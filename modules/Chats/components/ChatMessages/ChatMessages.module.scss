@@ -1,0 +1,73 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  padding: 18px 40px;
+  border-bottom: 1px solid $gray-50;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.contact {
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.status {
+  opacity: 0.5;
+  font-size: 16px;
+  line-height: 28px;
+}
+
+.field {
+  font-family: $main-font;
+  height: 22px;
+  font-size: 16px;
+  padding: 0;
+  width: 100%;
+  resize: none;
+  border: none;
+
+  &:active,
+  &:focus {
+    border: none;
+    outline: none;
+  }
+}
+
+.fieldWrapper {
+  display: flex;
+  gap: 8px;
+  padding: 20px 30px;
+}
+
+.sendMessage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 400;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 8px;
+
+  &.allowed {
+    background-color: $b-purple;
+  }
+}
+
+.chat {
+  border-bottom: 1px solid $gray-50;
+  flex-grow: 1;
+  overflow-y: scroll;
+  background-color: $gray-10;
+}
+
+

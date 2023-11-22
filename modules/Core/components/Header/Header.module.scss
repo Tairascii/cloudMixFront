@@ -1,0 +1,44 @@
+.block {
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $gray-50;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.user {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.userName {
+    font-size: 18px;
+    color: $gray-95;
+    font-weight: 500;
+}
+
+.logoutButton {
+    color: $gray-95;
+    font-size: 16px;
+    opacity: 0.5;
+    font-weight: 400;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    height: 28px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+        color: $ui-red;
+        opacity: 1;
+    }
+}

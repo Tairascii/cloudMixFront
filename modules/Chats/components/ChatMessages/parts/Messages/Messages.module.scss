@@ -1,0 +1,39 @@
+.block {
+  display: flex;
+  flex-direction: column;
+  padding: 0 42px;
+  padding-top: 24px;
+  box-sizing: border-box;
+  justify-content: flex-end;
+}
+
+.bubble {
+  width: fit-content;
+  flex-grow: 0;
+  display: inline;
+  max-width: 50%;
+  background-color: $white;
+  padding: 12px 24px;
+  padding-bottom: 16px;
+  border-radius: 16px;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.own {
+  color: $white;
+  background-color: $b-purple;
+  align-self: flex-end;
+}
+
+.messageText {
+  font-size: 16px;
+  line-height: 28px;
+}
+
+.messageTime {
+  position: absolute;
+  bottom: 6px;
+  right: 12px;
+  font-size: 10px;
+}

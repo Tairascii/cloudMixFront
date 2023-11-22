@@ -1,0 +1,47 @@
+.block {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  border-bottom: 1px solid $gray-50;
+}
+
+.user,
+.messageInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.userName,
+.lastMessage {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 28px;
+  color: $gray-95;
+}
+
+.lastMessage {
+  font-size: 16px;
+  opacity: 50%;
+}
+
+.lastMessageTime {
+  font-size: 14px;
+  line-height: 21px;
+  color: $gray-95;
+  opacity: 60%;
+  margin-top: auto;
+}
+
+.unreadCount {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  color: $white;
+  font-size: 14px;
+  line-height: 24px;
+  border-radius: 50%;
+  background-color: $b-purple;
+}

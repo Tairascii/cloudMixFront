@@ -1,0 +1,255 @@
+{
+  "extends": ["airbnb", "prettier"],
+  "env": {
+    "browser": true
+  },
+  "ignorePatterns": ["next.config.js", "pages/*.xml/*.tsx"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "globals": {
+    "window": true,
+    "document": true,
+    "jest": true,
+    "JSX": true,
+    "VoidFunction": true,
+    "StringFunction": true
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "typescript-sort-keys",
+    "react",
+    "react-hooks",
+    "import",
+    "jest",
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
+    "consistent-return": "off",
+    "linebreak-style": "off",
+    "radix": "off",
+    "css-rcurlyexpected": 0,
+    "no-restricted-globals": ["error", "isFinite", "isNaN"],
+    "max-len": [
+      2,
+      {
+        "ignoreComments": true,
+        "ignoreUrls": true,
+        "code": 120
+      }
+    ],
+    "no-shadow": 0,
+    "no-prototype-builtins": "off",
+    "class-methods-use-this": 0,
+    "camelcase": 0,
+    "no-underscore-dangle": "off",
+    "template-curly-spacing": "off",
+    "computed-property-spacing": "off",
+    "prefer-object-spread": "off",
+    "no-plusplus": 0,
+    "object-curly-spacing": "error",
+    "react/jsx-curly-spacing": [
+      "error",
+      {
+        "when": "never"
+      }
+    ],
+    "react/jsx-filename-extension": 0,
+    "react/react-in-jsx-scope": 0,
+    "react/jsx-props-no-spreading": 0,
+    "react/prefer-stateless-function": 0,
+    "react/state-in-constructor": ["error", "always"],
+    "react/button-has-type": 0,
+    "react/jsx-indent": 0,
+    "react/jsx-indent-props": 2,
+    "react/jsx-sort-props": "warn",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "off",
+    "react/no-array-index-key": "off",
+    "react/jsx-key": "error",
+    "react/no-did-update-set-state": "off",
+    "no-case-declarations": "off",
+    "jsx-a11y/label-has-for": 0,
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "jsx-a11y/media-has-caption": "warn",
+    "jsx-a11y/no-noninteractive-element-interactions": 0,
+    "jsx-a11y/control-has-associated-label": "off",
+    "import/extensions": "off",
+    "import/named": "off",
+    "import/no-extraneous-dependencies": "error",
+    "import/no-named-as-default-member": "error",
+    "import/no-named-as-default": "error",
+    "import/no-named-default": "off",
+    "no-useless-catch": "off",
+    "import/no-unresolved": "off",
+    "import/prefer-default-export": "off",
+    "import/order": [
+      "warn",
+      {
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        },
+        "pathGroupsExcludedImportTypes": ["builtin"],
+        "newlines-between": "always",
+        "warnOnUnassignedImports": true,
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "**/?(*)techno-ui{,/**}",
+            "group": "external",
+            "position": "after"
+          },
+
+          {
+            "pattern": "**/?(*)settings{,/**}",
+            "group": "internal",
+            "position": "after"
+          },
+
+          {
+            "pattern": "**/?(*)Core{,/**}",
+            "group": "internal",
+            "position": "after"
+          },
+
+          {
+            "pattern": "**/?(*)User{,/**}",
+            "group": "internal",
+            "position": "after"
+          },
+
+          {
+            "pattern": "**/?(*)Product{,/**}",
+            "group": "internal",
+            "position": "after"
+          },
+
+          {
+            "pattern": "**/?(*)Checkout{,/**}",
+            "group": "internal",
+            "position": "after"
+          },
+
+          {
+            "pattern": "**/?(*)Marketing{,/**}",
+            "group": "internal",
+            "position": "after"
+          },
+
+          {
+            "pattern": "{.,..}/**/*.scss",
+            "group": "object",
+            "position": "after"
+          },
+
+          {
+            "pattern": "**/?(*)styles{,/**}",
+            "group": "object",
+            "position": "after"
+          }
+        ]
+      }
+    ],
+    "no-restricted-imports": [
+      "error",
+      {
+        "paths": [
+          {
+            "name": "react-i18next",
+            "message": "Please use next-i18next instead."
+          },
+          {
+            "name": "i18next",
+            "message": "Please use next-i18next instead."
+          },
+          {
+            "name": "next-i18next",
+            "importNames": ["withTranslation"],
+            "message": "Please use useTranslation hook instead. https://github.com/i18next/next-i18next#usetranslation see link"
+          },
+          {
+            "name": "@jest/globals",
+            "message": "Use global expect function instead"
+          },
+          {
+            "name": "techno-ui",
+            "message": "Use more specific path"
+          },
+          {
+            "name": "techno-ui/components",
+            "message": "Use more specific path"
+          },
+          {
+            "name": "techno-ui/components/other",
+            "message": "Use more specific path"
+          },
+          {
+            "name": "techno-ui/components/buttons",
+            "message": "Use more specific path"
+          },
+          {
+            "name": "techno-ui/components/inputs",
+            "message": "Use more specific path"
+          },
+          {
+            "name": "techno-ui/components/icons",
+            "message": "Use more specific path"
+          },
+          {
+            "name": "techno-ui/components/cards",
+            "message": "Use more specific path"
+          }
+        ]
+      }
+    ],
+    "react/prop-types": "off",
+    "@typescript-eslint/array-type": "error",
+    "@typescript-eslint/explicit-function-return-type": "warn",
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/member-ordering": "off",
+    "@typescript-eslint/type-annotation-spacing": "error",
+    "typescript-sort-keys/interface": "warn",
+    "typescript-sort-keys/string-enum": "warn",
+    "no-undef": "off"
+  },
+  "overrides": [
+    {
+      "files": ["server/sitemap/start.ts"],
+      "rules": {
+        "import/first": "off"
+      }
+    },
+    {
+      "files": ["*.test.ts", "*.test.tsx"],
+      "rules": {
+        "import/no-extraneous-dependencies": "off",
+        "no-undef": "off",
+        "no-restricted-syntax": "off",
+        "jest/no-disabled-tests": "warn",
+        "jest/no-focused-tests": "error",
+        "jest/no-identical-title": "error",
+        "jest/prefer-to-have-length": "warn",
+        "jest/valid-expect": "error"
+      }
+    }
+  ]
+}

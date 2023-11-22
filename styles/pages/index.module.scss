@@ -1,0 +1,15 @@
+.sideBar {
+  width: 510px;
+  border-right: 1px solid $gray-50;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+}
+
+.pageWrapper {
+  overflow-y: hidden;
+  height: calc(100vh - 86px);
+  display: flex;
+}
