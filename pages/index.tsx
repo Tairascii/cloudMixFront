@@ -14,6 +14,7 @@ import { defaultCity } from 'Core/constants'
 import { Sidebar } from 'modules/Chats/components/Sidebar'
 import { ChatMessages } from 'modules/Chats/components/ChatMessages'
 import styles from 'styles/pages/index.module.scss'
+import { useStore } from 'settings/stores'
 
 interface HomeProps {
   core: ICoreStore
@@ -21,7 +22,10 @@ interface HomeProps {
   url: string
 }
 
-const Home: FC<HomeProps> = ({ core: { locale }, url, ua }) => {
+const Home: FC<HomeProps> = ({ url, ua }) => {
+  const {
+    core: { locale },
+  } = useStore()
   const seoLink = {
     href: url,
     rel: 'canonical',

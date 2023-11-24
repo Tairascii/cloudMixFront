@@ -1,14 +1,13 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { useTranslation } from 'next-i18next'
 import Link from 'next/link'
 import clsx from 'clsx'
 import { useStore } from 'settings/stores'
 import { observer } from 'mobx-react'
-import { locales } from 'settings/i18n'
 import { useRouter } from 'next/router'
 import styles from './Sidebar.module.scss'
-import { messagesMock } from './mocks'
 import { Chatline } from './parts/Chatline'
+import { convertRawDate } from 'modules/Chats/utils/convertRawDate'
 
 interface SidebarProps {
   className?: string
@@ -16,27 +15,33 @@ interface SidebarProps {
 
 const Sidebar: FC<SidebarProps> = ({ className }) => {
   const { t } = useTranslation()
-  const { core: { locale, setLocale } = { locale: 'ru' } } = useStore()
-  const router = useRouter()
+  const {
+    chats: { chats, chatsCount },
+  } = useStore()
 
   return (
     <div className={clsx(styles.block, className)}>
       <div className={styles.totalMessages}>
         <span className={styles.totalMessagesText}>
-          {t('common:messagesNumber', { cnt: 3 })}
+          {t('common:messagesNumber', { cnt: chatsCount })}
         </span>
       </div>
       <div className={styles.user}>
-        {messagesMock.map((item) => {
-          const formateDate = ''
+        {chats.map((item) => {
+          const unreadCount = item.lastMessage.readStatus ? 0 : 1
+          const time = convertRawDate(item.lastMessage.timestamp)
           return (
-            <Link href={item.id} shallow className={styles.chatLink}>
+            <Link
+              href={String(item.id)}
+              shallow
+              className={styles.chatLink}
+              key={item.id}
+            >
               <Chatline
-                key={item.id}
-                userName={item.userName}
-                lastMessage={item.lastMessage}
-                lastMessageTime={'10:41'}
-                unreadCount={item.unreadMessagesCount}
+                userName={item.bot.name}
+                lastMessage={item.lastMessage.content}
+                lastMessageTime={time}
+                unreadCount={unreadCount}
                 isActive={false}
               />
             </Link>

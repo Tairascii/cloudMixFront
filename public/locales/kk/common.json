@@ -3,5 +3,6 @@
     "logout": "Logout",
     "messagesNumber": "Messages({{cnt}})",
     "writeAMessage": "Write a message ...",
-    "online": "online"
+    "online": "online",
+    "selectWhoYouWantToMessage": "Choose who you would like to write to"
 }

@@ -40,6 +40,7 @@
 
 .fieldWrapper {
   display: flex;
+  align-items: center;
   gap: 8px;
   padding: 20px 30px;
 }
@@ -54,9 +55,11 @@
   border: none;
   margin: 0;
   padding: 4px;
+  height: 24px;
+  width: 24px;
   cursor: pointer;
   transition: all 0.2s ease;
-  border-radius: 8px;
+  border-radius: 4px;
 
   &.allowed {
     background-color: $b-purple;
@@ -68,6 +71,18 @@
   flex-grow: 1;
   overflow-y: scroll;
   background-color: $gray-10;
+}
+
+.notSelectedText {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+.notSelectedBlock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 

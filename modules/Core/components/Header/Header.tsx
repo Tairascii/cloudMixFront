@@ -9,7 +9,7 @@ import styles from './Header.module.scss'
 
 const Header: FC<HeaderProps> = ({}) => {
   const { t } = useTranslation()
-  console.log('asfsf')
+
   return (
     <div className={styles.block}>
       <div className={styles.logo}>

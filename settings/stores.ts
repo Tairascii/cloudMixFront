@@ -1,6 +1,8 @@
 import { MobXProviderContext, enableStaticRendering } from 'mobx-react'
 import { useContext, useMemo } from 'react'
 import { CoreStore } from 'Core/stores'
+import { ChatsStore } from 'modules/Chats/stores/ChatsStore'
+import { MessagesStore } from 'modules/Chats/stores/MessagesStore'
 
 const isServer = typeof window === 'undefined'
 enableStaticRendering(isServer)
@@ -9,9 +11,13 @@ let store: any = null
 
 export class Store {
   core: CoreStore
+  chats: ChatsStore
+  messages: MessagesStore
 
   constructor() {
     this.core = new CoreStore()
+    this.chats = new ChatsStore()
+    this.messages = new MessagesStore()
   }
 
   hydrate(initialData): void {

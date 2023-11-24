@@ -1,6 +1,22 @@
 declare interface Message {
-  id: string
-  userId: string
-  timeStamp: string
-  text: string
+  id: number
+  chatId: number
+  senderId: number
+  botId: number
+  isFromBot: boolean
+  content: string
+  timestamp: string
+  readStatus: boolean
+}
+
+declare interface Bot {
+  id: number
+  name: string
+}
+
+declare interface Chat {
+  id: number
+  userId: number
+  bot: Bot
+  lastMessage: Message
 }

@@ -1,13 +1,7 @@
-import { FC, useState } from 'react'
-import { useTranslation } from 'next-i18next'
-import Link from 'next/link'
+import { FC, useEffect, useRef } from 'react'
 import clsx from 'clsx'
-import { useStore } from 'settings/stores'
-import { observer } from 'mobx-react'
-import { locales } from 'settings/i18n'
-import { useRouter } from 'next/router'
 import styles from './Messages.module.scss'
-import Image from 'next/image'
+import { convertRawDate } from 'modules/Chats/utils/convertRawDate'
 
 interface MessagesProps {
   className?: string
@@ -15,20 +9,18 @@ interface MessagesProps {
 }
 
 const Messages: FC<MessagesProps> = ({ className, messages }) => {
-  const { t } = useTranslation()
-
   return (
     <div className={clsx(styles.block, className)}>
-      {messages.map((item) => {
+      {messages?.map((item) => {
         return (
           <div
             key={item.id}
             className={clsx(styles.bubble, {
-              [styles.own]: item.userId === '1',
+              [styles.own]: !item.isFromBot,
             })}
           >
-            <span className={styles.messageText}>{item.text}</span>
-            <span className={styles.messageTime}>{item.timeStamp}</span>
+            <span className={styles.messageText}>{item.content}</span>
+            <span className={styles.messageTime}>{convertRawDate(item.timestamp)}</span>
           </div>
         )
       })}
