@@ -35,7 +35,6 @@ export class ChatsStore {
 
   createChat = async (botName: string) => {
     const chat = await createChat(botName)
-    console.log(chat)
   }
 
   hydrate(initialChats: Chat[]): void {
