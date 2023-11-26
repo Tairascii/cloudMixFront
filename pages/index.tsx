@@ -73,8 +73,7 @@ const Home: FC<HomeProps> = ({ url, ua }) => {
       className={styles.block}
     >
       <div className={styles.pageWrapper}>
-        <Sidebar className={styles.sideBar} />
-        <ChatMessages />
+        main
       </div>
     </Page>
   )

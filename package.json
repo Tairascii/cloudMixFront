@@ -6,7 +6,8 @@
     "dev": "next dev ",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "typecheck": "tsc --module esnext --noEmit"
   },
   "dependencies": {
     "@babel/core": "^7.20.12",
