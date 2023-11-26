@@ -23,6 +23,7 @@ const ChatMessages: FC<ChatMessagesProps> = ({ className }) => {
       setMessageContent,
       sendMessage,
       setChatId,
+      clearMessages,
     },
     chats: { chatsDictionary },
   } = useStore()
@@ -30,12 +31,19 @@ const ChatMessages: FC<ChatMessagesProps> = ({ className }) => {
   const chatId = router.query.id as string
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const messagesRef = useRef<HTMLDivElement>(null)
-  const { bot, userId } = chatsDictionary[chatId]
+  const { bot, user } = chatsDictionary[chatId] ?? {}
 
   useEffect(() => {
+    clearMessages()
     setChatId(chatId)
-    loadMessages()
   }, [chatId])
+
+  useEffect(() => {
+    if(isChatSelected) {
+      const intervalId = setInterval(() => loadMessages(), 1000)
+      return (): void => clearInterval(intervalId)
+    }
+  }, [isChatSelected])
 
   useEffect(() => {
     const scrollToBottom = () => {
@@ -72,7 +80,7 @@ const ChatMessages: FC<ChatMessagesProps> = ({ className }) => {
   const onEnterPress = (e: KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault()
-      sendMessage({ bot: bot.id, sender: userId, chat: parseInt(chatId) })
+      sendMessage({ bot: bot.id, sender: user, chat: parseInt(chatId) })
       return
     }
   }
@@ -103,7 +111,7 @@ const ChatMessages: FC<ChatMessagesProps> = ({ className }) => {
           })}
           disabled={!messageContent}
           onClick={() =>
-            sendMessage({ bot: bot.id, sender: userId, chat: parseInt(chatId) })
+            sendMessage({ bot: bot.id, sender: user, chat: parseInt(chatId) })
           }
         >
           <svg

@@ -1,0 +1,27 @@
+.block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 240px;
+  height: 160px;
+  background-color: $white;
+  border-radius: 8px;
+}
+
+.field {
+  font-size: 14px;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid $gray-95;
+}
+
+.title {
+  margin-bottom: 12px;
+}

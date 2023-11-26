@@ -13,3 +13,18 @@
 .chatLink {
   text-decoration: none;
 }
+
+.createNewChatWrapper {
+  padding: 16px;
+}
+
+.createNewChat {
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  color: $gray-95;
+  border: 1px solid $gray-95;
+  background-color: transparent;
+}

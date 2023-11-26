@@ -16,7 +16,7 @@ declare interface Bot {
 
 declare interface Chat {
   id: number
-  userId: number
+  user: number
   bot: Bot
   lastMessage: Message
 }

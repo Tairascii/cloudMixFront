@@ -1,6 +1,6 @@
 import { keysToCamel } from 'Core/utils/keysToCamel'
 import { makeAutoObservable, runInAction } from 'mobx'
-import { getAllChats } from 'modules/Chats/api/chats'
+import { createChat, getAllChats } from 'modules/Chats/api/chats'
 import { createChatsDictionary } from 'modules/Chats/utils/createChatsDictionary'
 
 export class ChatsStore {
@@ -29,9 +29,13 @@ export class ChatsStore {
     }
   }
 
-
   get chatsCount() {
-    return this.chats.length
+    return this.chats?.length
+  }
+
+  createChat = async (botName: string) => {
+    const chat = await createChat(botName)
+    console.log(chat)
   }
 
   hydrate(initialChats: Chat[]): void {

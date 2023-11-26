@@ -1,13 +1,13 @@
-import { FC, useEffect } from 'react'
+import { FC, useState, useEffect } from 'react'
 import { useTranslation } from 'next-i18next'
 import Link from 'next/link'
 import clsx from 'clsx'
 import { useStore } from 'settings/stores'
 import { observer } from 'mobx-react'
-import { useRouter } from 'next/router'
 import styles from './Sidebar.module.scss'
 import { Chatline } from './parts/Chatline'
 import { convertRawDate } from 'modules/Chats/utils/convertRawDate'
+import { CreateChatModal } from '../CreateChatModal'
 
 interface SidebarProps {
   className?: string
@@ -16,8 +16,14 @@ interface SidebarProps {
 const Sidebar: FC<SidebarProps> = ({ className }) => {
   const { t } = useTranslation()
   const {
-    chats: { chats, chatsCount },
+    chats: { chats, chatsCount, createChat, loadChats },
   } = useStore()
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  useEffect(() => {
+    const intervalId = setInterval(() => loadChats(), 3000)
+    return (): void => clearInterval(intervalId)
+  }, [])
 
   return (
     <div className={clsx(styles.block, className)}>
@@ -27,9 +33,9 @@ const Sidebar: FC<SidebarProps> = ({ className }) => {
         </span>
       </div>
       <div className={styles.user}>
-        {chats.map((item) => {
-          const unreadCount = item.lastMessage.readStatus ? 0 : 1
-          const time = convertRawDate(item.lastMessage.timestamp)
+        {chats?.map((item) => {
+          const unreadCount = item.lastMessage?.readStatus === false ? 1 : 0
+          const time = convertRawDate(item.lastMessage?.timestamp)
           return (
             <Link
               href={String(item.id)}
@@ -39,7 +45,7 @@ const Sidebar: FC<SidebarProps> = ({ className }) => {
             >
               <Chatline
                 userName={item.bot.name}
-                lastMessage={item.lastMessage.content}
+                lastMessage={item.lastMessage?.content ?? 'No messages yet'}
                 lastMessageTime={time}
                 unreadCount={unreadCount}
                 isActive={false}
@@ -48,6 +54,19 @@ const Sidebar: FC<SidebarProps> = ({ className }) => {
           )
         })}
       </div>
+      <div className={styles.createNewChatWrapper}>
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className={styles.createNewChat}
+        >
+          {t('createNewChatWithPlus')}
+        </button>
+      </div>
+      <CreateChatModal
+        isOpen={isModalOpen}
+        setIsOpen={setIsModalOpen}
+        onSubmit={createChat}
+      />
     </div>
   )
 }

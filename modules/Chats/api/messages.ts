@@ -34,3 +34,23 @@ export const getMessages = async (
   }
   return { data, found: true }
 }
+
+export const createBotReply = async ({
+  content,
+  chat,
+  bot,
+  sender,
+}: CreateMessageParams): Promise<MessageRaw> => {
+  const { data, success } = await POST(getApiPath('bot/'), {
+    chat,
+    sender,
+    bot,
+    content,
+  })
+
+  if(!success) {
+    throw new Error('something went wrong while sending your message')
+  }
+
+  return data
+}

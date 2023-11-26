@@ -4,5 +4,6 @@
     "messagesNumber": "Messages({{cnt}})",
     "writeAMessage": "Write a message ...",
     "online": "online",
-    "selectWhoYouWantToMessage": "Choose who you would like to write to"
+    "selectWhoYouWantToMessage": "Choose who you would like to write to",
+    "createNewChatWithPlus": "+ Create new chat"
 }

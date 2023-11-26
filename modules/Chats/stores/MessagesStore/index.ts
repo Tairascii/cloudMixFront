@@ -1,7 +1,7 @@
 import { keysToCamel } from 'Core/utils/keysToCamel'
 import { makeAutoObservable, runInAction } from 'mobx'
 import { getAllChats } from 'modules/Chats/api/chats'
-import { createMessage, getMessages } from 'modules/Chats/api/messages'
+import { createBotReply, createMessage, getMessages } from 'modules/Chats/api/messages'
 import { CreateMessageParams } from 'modules/Chats/api/types'
 
 export class MessagesStore {
@@ -43,19 +43,30 @@ export class MessagesStore {
       return
     }
     try {
-      const sentMessageRaw = await createMessage({
+      const content = this.messageContent
+      await createMessage({
         bot,
         sender,
         chat,
-        content: this.messageContent,
+        content,
       })
       runInAction(() => {
         this.messageContent = ''
-        this.messages.push(keysToCamel(sentMessageRaw))
       })
+      await createBotReply({
+        bot,
+        sender,
+        chat,
+        content,
+      })
+
     } catch (error) {
       console.log(error.message)
     }
+  }
+
+  clearMessages = () => {
+    this.messages = []
   }
 
   setChatId = (chatId: string) => {
