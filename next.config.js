@@ -26,7 +26,7 @@ module.exports = withBundleAnalyzer({
       @import "mixins.scss";
     `,
   },
-  'i18n': JSON.parse('{"defaultLocale":"almaty","locales":["almaty","almaty_kk","almaty_en","astana","astana_kk"],"localeDetection":true}'),
+  'i18n': JSON.parse('{"defaultLocale":"almaty","locales":["almaty","almaty_kk","almaty_en"],"localeDetection":true}'),
   experimental: {
     images: {
       layoutRaw: true,

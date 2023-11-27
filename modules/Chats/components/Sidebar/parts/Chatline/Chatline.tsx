@@ -1,7 +1,5 @@
 import { FC } from 'react'
-import { useTranslation } from 'next-i18next'
 import clsx from 'clsx'
-import { useRouter } from 'next/router'
 import styles from './Chatline.module.scss'
 
 interface ChatlineProps {
@@ -21,9 +19,6 @@ const Chatline: FC<ChatlineProps> = ({
   lastMessageTime,
   isActive,
 }) => {
-  const { t } = useTranslation()
-  const router = useRouter()
-
   return (
     <div
       className={clsx(styles.block, className, { [styles.active]: isActive })}

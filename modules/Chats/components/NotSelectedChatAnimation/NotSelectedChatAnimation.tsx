@@ -2,7 +2,6 @@ import { clsx } from 'clsx'
 import { useAsyncLottie } from 'Core/utils/useAsyncLottie'
 import { AnimationItem } from 'lottie-web'
 import { FC, MutableRefObject, useEffect, useRef } from 'react'
-import { useTranslation } from 'react-i18next'
 import styles from './NotSelectedChatAnimation.module.scss'
 
 interface NotSelectedChatProps {

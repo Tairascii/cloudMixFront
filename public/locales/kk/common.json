@@ -1,9 +1,12 @@
 {
-    "headerTitle": "CloudMix - Чатбот для избранных",
-    "logout": "Logout",
-    "messagesNumber": "Messages({{cnt}})",
-    "writeAMessage": "Write a message ...",
-    "online": "online",
-    "selectWhoYouWantToMessage": "Choose who you would like to write to",
-    "createNewChatWithPlus": "+ Create new chat"
+    "headerTitle": "CloudMix - Элитаға арналған чатбот",
+    "logout": "Шығу",
+    "messagesNumber": "Хабарлар({{cnt}})",
+    "writeAMessage": "Хабарлама жазыңыз ...",
+    "online": "онлайн",
+    "selectWhoYouWantToMessage": "Кімге жазғыңыз келетінін таңдаңыз",
+    "createNewChatWithPlus": "+ Жаңа чат жасау",
+    "typeNameForBot": "Ботың атын жазыңыз",
+    "name": "Ат",
+    "noMessages": "Әлі хабарлар жоқ"
 }

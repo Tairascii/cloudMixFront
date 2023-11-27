@@ -1,6 +1,7 @@
 import { FC, FormEvent, useState } from 'react'
 import Modal from '@mui/material/Modal'
 import styles from './CreateChatModal.module.scss'
+import { useTranslation } from 'next-i18next'
 
 interface CreateChatModalProps {
   isOpen: boolean
@@ -8,11 +9,17 @@ interface CreateChatModalProps {
   onSubmit: (name: string) => Promise<void>
 }
 
-const CreateChatModal: FC<CreateChatModalProps> = ({ isOpen, setIsOpen, onSubmit }) => {
+const CreateChatModal: FC<CreateChatModalProps> = ({
+  isOpen,
+  setIsOpen,
+  onSubmit,
+}) => {
+  const { t } = useTranslation()
   const [name, setName] = useState('')
 
   const onSubmitForm = (e: FormEvent) => {
     e.preventDefault()
+    if (!name) return
     onSubmit(name)
     setName('')
     setIsOpen(false)
@@ -24,11 +31,15 @@ const CreateChatModal: FC<CreateChatModalProps> = ({ isOpen, setIsOpen, onSubmit
       onClose={() => setIsOpen(false)}
       className={styles.block}
     >
-      <form onSubmit={onSubmitForm} className={styles.form}>
-        <span className={styles.title}>Type name for your bot</span>
+      <form
+        onSubmit={onSubmitForm}
+        className={styles.form}
+        data-testid='NameForm'
+      >
+        <span className={styles.title}>{t('typeNameForBot')}</span>
         <input
           type='text'
-          placeholder='Name'
+          placeholder={t('name') ?? 'Name'}
           className={styles.field}
           maxLength={16}
           value={name}

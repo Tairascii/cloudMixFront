@@ -22,6 +22,6 @@
       "Establishment/*": ["modules/Establishment/*"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "modules/Chats/utils/__tests__/convertRawDate.test.ts"],
   "exclude": ["node_modules"]
 }

@@ -4,10 +4,10 @@ import Link from 'next/link'
 import clsx from 'clsx'
 import { useStore } from 'settings/stores'
 import { observer } from 'mobx-react'
-import styles from './Sidebar.module.scss'
-import { Chatline } from './parts/Chatline'
 import { convertRawDate } from 'modules/Chats/utils/convertRawDate'
+import { Chatline } from './parts/Chatline'
 import { CreateChatModal } from '../CreateChatModal'
+import styles from './Sidebar.module.scss'
 
 interface SidebarProps {
   className?: string
@@ -29,7 +29,7 @@ const Sidebar: FC<SidebarProps> = ({ className }) => {
     <div className={clsx(styles.block, className)}>
       <div className={styles.totalMessages}>
         <span className={styles.totalMessagesText}>
-          {t('common:messagesNumber', { cnt: chatsCount })}
+          {t('common:messagesNumber', { cnt: chatsCount ?? 0 })}
         </span>
       </div>
       <div className={styles.user}>
@@ -45,7 +45,7 @@ const Sidebar: FC<SidebarProps> = ({ className }) => {
             >
               <Chatline
                 userName={item.bot.name}
-                lastMessage={item.lastMessage?.content ?? 'No messages yet'}
+                lastMessage={item.lastMessage?.content ?? t('noMessages')}
                 lastMessageTime={time}
                 unreadCount={unreadCount}
                 isActive={false}
