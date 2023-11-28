@@ -1,18 +1,18 @@
 # cloudMix Front
 
-# Getting Started
+## Getting Started
 
-## To install needed node_modules run
+### To install needed node_modules run
 ```
 yarn
 ```
 
-## To start local server run
+### To start local server run
 ```
 yarn dev
 ```
 
-## To start test
+### To start test
 ```
 yarn jest 
 ```
