@@ -1,6 +1,7 @@
 import { FC, useEffect, useRef, KeyboardEvent } from 'react'
 import { useTranslation } from 'next-i18next'
 import clsx from 'clsx'
+import Image from 'next/image'
 import { useStore } from 'settings/stores'
 import { observer } from 'mobx-react'
 import { useRouter } from 'next/router'
@@ -10,9 +11,15 @@ import { NotSelectedChatAnimation } from '../NotSelectedChatAnimation'
 
 interface ChatMessagesProps {
   className?: string
+  setIsChatOpen: (value: boolean) => void
+  isMobile: boolean
 }
 
-const ChatMessages: FC<ChatMessagesProps> = ({ className }) => {
+const ChatMessages: FC<ChatMessagesProps> = ({
+  className,
+  setIsChatOpen,
+  isMobile,
+}) => {
   const { t } = useTranslation()
   const {
     messages: {
@@ -36,10 +43,11 @@ const ChatMessages: FC<ChatMessagesProps> = ({ className }) => {
   useEffect(() => {
     clearMessages()
     setChatId(chatId)
+    loadMessages()
   }, [chatId])
 
   useEffect(() => {
-    if(isChatSelected) {
+    if (isChatSelected) {
       const intervalId = setInterval(() => loadMessages(), 1000)
       return (): void => clearInterval(intervalId)
     }
@@ -88,8 +96,18 @@ const ChatMessages: FC<ChatMessagesProps> = ({ className }) => {
   return (
     <div className={clsx(styles.block, className)}>
       <div className={styles.header}>
-        <span className={styles.contact}>{bot.name}</span>
-        <span className={styles.status}>{t('online')}</span>
+        <Image
+          src='/images/icons/chevron-left.svg'
+          alt='back'
+          width={24}
+          height={24}
+          className={styles.chevron}
+          onClick={() => setIsChatOpen(false)}
+        />
+        <div className={styles.headerText}>
+          <span className={styles.contact}>{bot.name}</span>
+          <span className={styles.status}>{t('online')}</span>
+        </div>
       </div>
       <div className={styles.chat} ref={messagesRef}>
         <Messages messages={messages} />

@@ -9,6 +9,7 @@ import { locales } from 'settings/i18n'
 import { cityWithLocale } from 'Core/utils/cityWithLocale'
 import { LocaleEnum } from 'Core/stores/types'
 import { HeaderProps } from './types'
+import { UrlEnums } from 'Core/enums/UrlEnums'
 import styles from './Header.module.scss'
 
 const Header: FC<HeaderProps> = ({}) => {
@@ -18,15 +19,22 @@ const Header: FC<HeaderProps> = ({}) => {
 
   return (
     <div className={styles.block}>
-      <div className={styles.logo}>
-        <Image src='/images/icons/icon.svg' alt='bult' width={42} height={42} />
-        <Image
-          src='/images/icons/CloudMix.svg'
-          alt='bult'
-          width={97}
-          height={42}
-        />
-      </div>
+      <Link href={UrlEnums.MAIN}>
+        <div className={styles.logo}>
+          <Image
+            src='/images/icons/icon.svg'
+            alt='bult'
+            width={42}
+            height={42}
+          />
+          <Image
+            src='/images/icons/CloudMix.svg'
+            alt='bult'
+            width={97}
+            height={42}
+          />
+        </div>
+      </Link>
       <div className={styles.rightSide}>
         <div className={styles.localeWrapper}>
           {locales

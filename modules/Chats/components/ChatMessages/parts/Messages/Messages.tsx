@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef } from 'react'
+import { FC } from 'react'
 import clsx from 'clsx'
 import styles from './Messages.module.scss'
 import { convertRawDate } from 'modules/Chats/utils/convertRawDate'
@@ -20,7 +20,9 @@ const Messages: FC<MessagesProps> = ({ className, messages }) => {
             })}
           >
             <span className={styles.messageText}>{item.content}</span>
-            <span className={styles.messageTime}>{convertRawDate(item.timestamp)}</span>
+            <span className={styles.messageTime}>
+              {convertRawDate(item.timestamp)}
+            </span>
           </div>
         )
       })}

@@ -1,15 +1,32 @@
-.sideBar {
-  width: 510px;
-  border-right: 1px solid $gray-50;
-}
-
 .block {
   display: flex;
-  flex-direction: column;
+  height: 100%;
 }
 
-.pageWrapper {
-  overflow-y: hidden;
-  height: calc(100vh - 86px);
+.background {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 70%;
+  background-image: url('../../public/images/global/bg.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.linkWrapper {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $white;
+}
+
+.goToChat {
+  text-decoration: none;
+  color: $white;
+  background-color: $b-purple;
+  font-size: 14px;
+  padding: 12px 16px;
 }

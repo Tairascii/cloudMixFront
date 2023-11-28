@@ -11,9 +11,11 @@ import styles from './Sidebar.module.scss'
 
 interface SidebarProps {
   className?: string
+  setIsChatOpen: (value: boolean) => void
+  isMobile: boolean
 }
 
-const Sidebar: FC<SidebarProps> = ({ className }) => {
+const Sidebar: FC<SidebarProps> = ({ className, setIsChatOpen, isMobile }) => {
   const { t } = useTranslation()
   const {
     chats: { chats, chatsCount, createChat, loadChats },
@@ -34,7 +36,7 @@ const Sidebar: FC<SidebarProps> = ({ className }) => {
       </div>
       <div className={styles.user}>
         {chats?.map((item) => {
-          const unreadCount = item.lastMessage?.readStatus === false ? 1 : 0
+          // const unreadCount = item.lastMessage?.readStatus === false ? 1 : 0
           const time = convertRawDate(item.lastMessage?.timestamp)
           return (
             <Link
@@ -42,12 +44,15 @@ const Sidebar: FC<SidebarProps> = ({ className }) => {
               shallow
               className={styles.chatLink}
               key={item.id}
+              onClick={() => {
+                if (isMobile) setIsChatOpen(true)
+              }}
             >
               <Chatline
                 userName={item.bot.name}
                 lastMessage={item.lastMessage?.content ?? t('noMessages')}
                 lastMessageTime={time}
-                unreadCount={unreadCount}
+                unreadCount={0}
                 isActive={false}
               />
             </Link>

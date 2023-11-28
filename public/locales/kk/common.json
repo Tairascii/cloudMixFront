@@ -8,5 +8,6 @@
     "createNewChatWithPlus": "+ Жаңа чат жасау",
     "typeNameForBot": "Ботың атын жазыңыз",
     "name": "Ат",
-    "noMessages": "Әлі хабарлар жоқ"
+    "noMessages": "Әлі хабарлар жоқ",
+    "goToChats": "Чаттарға өту"
 }

@@ -1,24 +1,18 @@
-import { FC, useEffect } from 'react'
+import { FC, useState } from 'react'
 import { GetServerSideProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import dynamic from 'next/dynamic'
 import { withSSPCities } from 'Core/HOCs/withSSPCities'
 import { Page } from 'Core/components/Page'
 import { getUserAgent } from 'Core/HOCs/withUserAgent'
-import { getFullUrl } from 'Core/utils/getFullUrl'
 import { UserAgent } from 'Core/HOCs/withUserAgent/constants'
 import { useTranslation } from 'next-i18next'
-import { useStore } from 'settings/stores'
 import { observer } from 'mobx-react'
-import { defaultCity } from 'Core/constants'
-import { isEmptyObj } from 'Core/utils/isEmptyObj'
 import { Sidebar } from 'modules/Chats/components/Sidebar'
 import { ChatMessages } from 'modules/Chats/components/ChatMessages'
-import styles from 'styles/pages/index.module.scss'
-import { useRouter } from 'next/router'
 import { getAllChats } from 'modules/Chats/api/chats'
 import { keysToCamel } from 'Core/utils/keysToCamel'
 import { getMessages } from 'modules/Chats/api/messages'
+import styles from 'styles/pages/chats.module.scss'
 
 interface ChatsPageProps {
   ua: UserAgent
@@ -27,12 +21,23 @@ interface ChatsPageProps {
 
 const ChatsPage: FC<ChatsPageProps> = ({ ua }) => {
   const { t } = useTranslation()
+  const [isChatOpen, setIsChatOpen] = useState(false)
+  const shouldShowSidebar = ua.isDesktop || (ua.isMobile && !isChatOpen)
+  const shouldShowChat = ua.isDesktop || (ua.isMobile && isChatOpen)
 
   return (
     <Page isMobile={ua.isMobile} seoTitle={t('headerTitle')}>
       <div className={styles.pageWrapper}>
-        <Sidebar className={styles.sideBar} />
-        <ChatMessages />
+        {shouldShowSidebar && (
+          <Sidebar
+            className={styles.sideBar}
+            setIsChatOpen={setIsChatOpen}
+            isMobile={ua.isMobile}
+          />
+        )}
+        {shouldShowChat && (
+          <ChatMessages setIsChatOpen={setIsChatOpen} isMobile={ua.isMobile} />
+        )}
       </div>
     </Page>
   )
@@ -54,7 +59,10 @@ export const getServerSideProps: GetServerSideProps = withSSPCities(
         getMessages(query.id),
       ]
 
-      const [chats, messages] = await Promise.all([chatsPromise, messagesPromise])
+      const [chats, messages] = await Promise.all([
+        chatsPromise,
+        messagesPromise,
+      ])
 
       return {
         props: {
@@ -68,7 +76,7 @@ export const getServerSideProps: GetServerSideProps = withSSPCities(
             messages: {
               messages: keysToCamel(messages.data),
               isChatSelected: messages.found,
-            }
+            },
           },
           ua,
         },

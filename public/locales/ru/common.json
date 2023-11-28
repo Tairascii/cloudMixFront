@@ -8,5 +8,6 @@
     "createNewChatWithPlus": "+ Создать новый чат",
     "typeNameForBot": "Напишите имя для вашего бота",
     "name": "Имя",
-    "noMessages": "Пока никаких сообщений"
+    "noMessages": "Пока никаких сообщений",
+    "goToChats": "Перейти к чатам"
 }

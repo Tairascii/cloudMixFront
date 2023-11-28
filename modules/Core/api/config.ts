@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from 'axios'
 import https from 'https'
 
 const axiosConfig: AxiosInstance = axios.create({
-  baseURL: 'http://127.0.0.1:8000',
+  baseURL: 'http://34.159.28.117:8001',
   headers: {
     'Content-Type': 'application/json',
   },

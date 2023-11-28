@@ -7,10 +7,11 @@ import { getUserAgent } from 'Core/HOCs/withUserAgent'
 import { UserAgent } from 'Core/HOCs/withUserAgent/constants'
 import { useTranslation } from 'next-i18next'
 import { observer } from 'mobx-react'
+import Image from 'next/image'
 import { ICoreStore } from 'Core/stores/types'
-import { defaultCity } from 'Core/constants'
+import Link from 'next/link'
+import { UrlEnums } from 'Core/enums/UrlEnums'
 import styles from 'styles/pages/index.module.scss'
-import { useStore } from 'settings/stores'
 
 interface HomeProps {
   core: ICoreStore
@@ -19,9 +20,6 @@ interface HomeProps {
 }
 
 const Home: FC<HomeProps> = ({ ua }) => {
-  const {
-    core: { locale },
-  } = useStore()
   const { t } = useTranslation()
 
   return (
@@ -29,10 +27,30 @@ const Home: FC<HomeProps> = ({ ua }) => {
       isMobile={ua.isMobile}
       isShowFooter
       seoTitle={t('headerTitle')}
-      className={styles.block}
+      isShowHeader={false}
     >
-      <div className={styles.pageWrapper}>
-        main
+      <div className={styles.block}>
+        <div className={styles.background}>
+          <div className={styles.logo}>
+            <Image
+              src='/images/icons/icon.svg'
+              alt='bult'
+              width={42}
+              height={42}
+            />
+            <Image
+              src='/images/icons/CloudMix.svg'
+              alt='bult'
+              width={97}
+              height={42}
+            />
+          </div>
+        </div>
+        <div className={styles.linkWrapper}>
+          <Link href={`${UrlEnums.CHATS}/w`} className={styles.goToChat}>
+            {t('goToChats')}
+          </Link>
+        </div>
       </div>
     </Page>
   )

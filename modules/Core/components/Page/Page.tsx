@@ -17,6 +17,7 @@ const Page: FC<PageProps> = ({
   preload,
   isShowFooter = false,
   className,
+  isShowHeader = true,
 }) => (
   <div className={clsx(styles.block, className)}>
     <Head
@@ -26,7 +27,8 @@ const Page: FC<PageProps> = ({
       seoLink={seoLink}
       seoTitle={seoTitle}
     />
-    <Header isMobile={isMobile} />
+
+    {isShowHeader && <Header isMobile={isMobile} />}
     {children}
     {isShowFooter && <Footer isMobile={isMobile} />}
   </div>

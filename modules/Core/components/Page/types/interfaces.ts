@@ -29,4 +29,5 @@ export interface PageProps extends HeadSeo {
   isMobile?: boolean
   isShowFooter?: boolean
   shouldHeaderBeSticky?: boolean
+  isShowHeader?: boolean
 }

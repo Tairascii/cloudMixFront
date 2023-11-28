@@ -1,8 +1,24 @@
 .header {
   display: flex;
-  flex-direction: column;
   padding: 18px 40px;
   border-bottom: 1px solid $gray-50;
+
+  @include mobile {
+    padding: 10px 24px;
+  }
+}
+
+.headerText {
+  display: flex;
+  flex-direction: column;
+}
+
+.chevron {
+  margin-right: 8px;
+
+  @include after-mobile {
+    display: none;
+  }
 }
 
 .block {
@@ -78,11 +94,8 @@
   font-weight: 500;
 }
 
-
 .notSelectedBlock {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
-

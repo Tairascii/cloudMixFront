@@ -5,6 +5,10 @@
   padding-top: 24px;
   box-sizing: border-box;
   justify-content: flex-end;
+
+  @include mobile {
+    padding: 0 24px;
+  }
 }
 
 .bubble {

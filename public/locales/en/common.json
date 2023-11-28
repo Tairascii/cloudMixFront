@@ -8,5 +8,6 @@
     "createNewChatWithPlus": "+ Create new chat",
     "typeNameForBot": "Type name for your bot",
     "name": "Name",
-    "noMessages": "No messages yet"
+    "noMessages": "No messages yet",
+    "goToChats": "Go to chats"
 }

@@ -1,7 +1,10 @@
 import { keysToCamel } from 'Core/utils/keysToCamel'
 import { makeAutoObservable, runInAction } from 'mobx'
-import { getAllChats } from 'modules/Chats/api/chats'
-import { createBotReply, createMessage, getMessages } from 'modules/Chats/api/messages'
+import {
+  createBotReply,
+  createMessage,
+  getMessages,
+} from 'modules/Chats/api/messages'
 import { CreateMessageParams } from 'modules/Chats/api/types'
 
 export class MessagesStore {
@@ -39,7 +42,7 @@ export class MessagesStore {
     sender,
     chat,
   }: Omit<CreateMessageParams, 'content'>) => {
-    if(!this.messageContent) {
+    if (!this.messageContent) {
       return
     }
     try {
@@ -59,7 +62,6 @@ export class MessagesStore {
         chat,
         content,
       })
-
     } catch (error) {
       console.log(error.message)
     }
